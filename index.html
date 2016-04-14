@@ -20,7 +20,7 @@
     <title>Playmix by botme</title>
   </head>
 
-  <body ng-controller="MainController">
+  <body ng-controller="MainController" ng-init="login()">
     <header>
       <div class="inner">
         <h1>Playmix</h1>
@@ -33,8 +33,28 @@
       <div class="inner clearfix">
         <section id="main-content">
 
-          <button ng-click="login()">Login with Spotify</button>
+          <!-- <button ng-click="login()">Login with Spotify</button> -->
 
+          <h1>Playlist</h1>
+
+          <ul ng-repeat="playlist in playlists">
+            <li ng-click="get_playlist(playlist.owner.id,playlist.id,playlist.name)">{{ playlist.name }}</li>
+          </ul>
+
+          <h2>Tracks</h2>
+
+          <ul ng-repeat="track_item in track_items">
+            <li >{{ track_item.track.name }}</li>
+          </ul>
+          
+          <h2>Remixed Tracks</h2>
+          <ul ng-repeat="remixed_item in remixed_items">
+            <li >{{ remixed_item.name }}</li>
+          </ul>
+
+          <h2>New playlist name</h2>
+          <input type="text" ng-model="new_name">
+          <button ng-click="create_remixed_playlist()">Create " {{new_name}} " Playlist</button>
         </section>
 
         <aside id="sidebar">
